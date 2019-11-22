@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!--Head section-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://kit.fontawesome.com/be02f39b81.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Orbitron:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
+    <title>Weather-app</title>
+</head>
+<!--Body section-->
+<body id="body">
+<div id="app" >
+    <form v-on:submit.prevent="getWeather">
+        <div class="input-group">
+            <input type="text" class="form-control" v-model="city" placeholder="Enter a City">
+        </div>
+    </form>
+        
+    <div id="display">
+        <div id="clock">
+            <div id="weekday"></div>
+            <div id="date"></div>
+            <div id="time"></div>
+            <div id="city"></div>
+        </div>
+        <div id="weatherWrapper">
+            <div id="today"></div>
+            <div id="forecast">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Scripts-->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>
