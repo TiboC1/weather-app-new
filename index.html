@@ -1,44 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!--Head section-->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://kit.fontawesome.com/be02f39b81.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Orbitron:400,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
-    <title>Weather-app</title>
+    <link rel="stylesheet" href="/css/main.css" type="text/css">
+    <title>Weather App</title>
 </head>
-<!--Body section-->
-<body id="body">
-<div id="app" >
-    <form v-on:submit.prevent="getWeather">
-        <div class="input-group">
-            <input type="text" class="form-control" v-model="city" placeholder="Enter a City">
-        </div>
-    </form>
-        
-    <div id="display">
-        <div id="clock">
-            <div id="weekday"></div>
-            <div id="date"></div>
-            <div id="time"></div>
-            <div id="city"></div>
-        </div>
-        <div id="weatherWrapper">
-            <div id="today"></div>
-            <div id="forecast">
+<body>
+<div id="app">
+
+    <div id="main-display">
+        <div id="middle-display" class="display">
+            <div id="search-bar">
+                <form v-on:submit.prevent="getWeather">
+                    <input type="text" class="form-control" v-model="city" placeholder="Enter a City">
+                </form>
             </div>
+            <p><span id="today-weekday"></span><span id="today-date"></span></p>
+            <p id="today-time"></p>
+        </div>
+
+        <div id="left-display" class="display">
+            <div>
+            </div>
+            <div id="main-weather">{{weather}}</div>
+            <div id="main-place">{{city}}</div>
+            <div id="main-temp">{{temps[0]}}°</div>
+            <div class="empty"></div>
+        </div>
+        <div id="right-display" class="display">
+            <div class="empty"></div>
+            <div id="today-humidity"></div>
+            <div id="today-rain-chance"></div>
+            <div id="today-wind-speed"></div>
+        </div>
+    </div>
+        <div id="forecast-navbar">
+            <p><button> < </button><span id="navbar-date"> Mon 23/11</span><button> > </button></p>
+        </div>
+    <div id="forecast-display">
+        <div id="card-one" class="card">
+            <div>{{temps[1]}}</div>
+            <div>
+                <img v-bind:src>
+            </div>
+            <div class="lol">3</div>
+        </div>
+        <div id="card-two" class="card">
+            <div>{{temps[2]}}</div>
+            <div>2</div>
+            <div>3</div>
+        </div>
+        <div id="card-three" class="card">
+            <div>{{temps[3]}}</div>
+            <div>2</div>
+            <div>3</div>
+        </div>
+        <div id="card-four" class="card">
+            <div>{{temps[4]}}</div>
+            <div>2</div>
+            <div>3</div>
+        </div>
+        <div id="card-five" class="card">
+            <div>{{temps[5]}}</div>
+            <div>2</div>
+            <div>3</div>
         </div>
     </div>
 </div>
-
 <!--Scripts-->
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 <script src="/js/main.js"></script>
-
-
 </body>
 </html>
