@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/main.css" type="text/css">
     <title>Weather App</title>
 </head>
@@ -18,54 +19,56 @@
                 </form>
             </div>
             <p><span id="today-weekday"></span><span id="today-date"></span></p>
-            <p id="today-time"></p>
+            <p id="today-time" class="XLarge"></p>
         </div>
 
         <div id="left-display" class="display">
             <div>
+                    <img style="width: 200px; height: 200px;" v-bind:src="`/img/${icon[0]}.svg`">
             </div>
-            <div id="main-weather">{{weather}}</div>
-            <div id="main-place">{{city}}</div>
-            <div id="main-temp">{{temps[0]}}°</div>
-            <div class="empty"></div>
+            <div id="main-weather">{{weather[0]}}</div>
+            <div id="main-temp" class="XLarge">{{temps[0]}}°C</div>
+            <div id="main-place" class="large" style="padding-top: 40px; color: lightgray;"></div>
         </div>
         <div id="right-display" class="display">
-            <div class="empty"></div>
-            <div id="today-humidity"></div>
-            <div id="today-rain-chance"></div>
-            <div id="today-wind-speed"></div>
+            <div id="today-humidity">
+                <p class="small">Humidity</p>
+                <p>{{humidity}}%</p>
+            </div>
+            <div id="today-wind-speed">
+                <p class="small">Wind Speed</p>
+                <p>{{windSpeed}}km/h</p>
+                </div>
         </div>
     </div>
-        <div id="forecast-navbar">
-            <p><button> < </button><span id="navbar-date"> Mon 23/11</span><button> > </button></p>
-        </div>
     <div id="forecast-display">
         <div id="card-one" class="card">
-            <div>{{temps[1]}}</div>
+            <div>{{days[0]}}/{{months[0]}}</div>
             <div>
-                <img v-bind:src>
+                <img v-bind:src="`/img/${icon[1]}.svg`">
             </div>
-            <div class="lol">3</div>
+            <div class="lol">{{fiveTemps[0]}}°C</div>
         </div>
         <div id="card-two" class="card">
-            <div>{{temps[2]}}</div>
-            <div>2</div>
-            <div>3</div>
+            <div>{{days[1]}}/{{months[1]}}</div>
+            <div>
+                    <img v-bind:src="`/img/${icon[2]}.svg`">
+            </div>
+            <div class="lol">{{fiveTemps[1]}}°C</div>
         </div>
         <div id="card-three" class="card">
-            <div>{{temps[3]}}</div>
-            <div>2</div>
-            <div>3</div>
+            <div>{{days[2]}}/{{months[2]}}</div>
+            <div>
+                    <img v-bind:src="`/img/${icon[3]}.svg`">
+            </div>
+            <div class="lol">{{fiveTemps[2]}}°C</div>
         </div>
         <div id="card-four" class="card">
-            <div>{{temps[4]}}</div>
-            <div>2</div>
-            <div>3</div>
-        </div>
-        <div id="card-five" class="card">
-            <div>{{temps[5]}}</div>
-            <div>2</div>
-            <div>3</div>
+            <div>{{days[3]}}/{{months[3]}}</div>
+            <div>
+                    <img v-bind:src="`/img/${icon[4]}.svg`">
+            </div>
+            <div class="lol">{{fiveTemps[3]}}°C</div>
         </div>
     </div>
 </div>

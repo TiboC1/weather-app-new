@@ -1,5 +1,6 @@
 // constants
 const input = document.getElementById("input")
+let i = 0;
 
 //functions
 
@@ -26,17 +27,71 @@ setInterval(() => {
 
     // End of Clock Display 
 
+    // HTML reset
+
+const HTMLreset = function(){
+    const displayEl = document.getElementsByClassName("card")
+    for (let i = 0; i < displayEl.length; i++){
+        displayEl[i].style.opacity = "0" ;
+    }
+    const leftDisplay = document.getElementById("left-display")
+        leftDisplay.style.opacity = "0"
+
+    const rightDisplay = document.getElementById("right-display")
+        rightDisplay.style.opacity = "0"
+}
+HTMLreset()
+
+    // Display HTML elements
+
+const HTMLdisplay = function(){
+    const displayEl = document.getElementsByClassName("card")
+    for (let i = 0; i < displayEl.length; i++){
+        displayEl[i].style.opacity = "1" ;
+    }
+    const leftDisplay = document.getElementById("left-display")
+        leftDisplay.style.opacity = "1"
+
+    const rightDisplay = document.getElementById("right-display")
+        rightDisplay.style.opacity = "1"
+    };
+
+// creating timestamp
+
+const timestamp =function(array, array2, array3) {
+    
+    let todaysDate = new Date(array);
+    let day = todaysDate.getDate()
+    let month = todaysDate.getMonth()+ 1
+    array2.push(day)
+    array3.push(month)
+    console.log(todaysDate)
+    
+};
+
     // Display data in HTML
 
     
-const displayForecastDate = function(){
+const createCity = function(place){
 
-    const tempDiv = document.createElement("div");
-    const temp = document.createElement("p");
-
-
+    const city = document.getElementById("main-place");
+    city.innerHTML = "";
+    const cityInput = document.createElement("p");
+    let lol = place.toUpperCase([0])
+    cityInput.innerText = lol;
+    city.appendChild(cityInput);
 }
 
+// create Dates
+
+const createDates = function(date){
+
+    for (let i = 8; i < date.length; i+=8){
+        let dateArr = [];
+        dateArr.push(date[i])
+        console.log(dateArr[i])
+    }
+}
 // Start of our App
 
 let weather = new Vue ({
@@ -44,9 +99,17 @@ let weather = new Vue ({
     data: {
         city: "",
         icon: [],
+        fiveIcon: [],
         dates: [],
-        weather: "",
+        days: [],
+        months: [],
+        fiveDays: [],
+        weather: [],
         temps: [],
+        fiveTemps: [],
+        humidity: "",
+        windSpeed: "",
+        rainChance: "",
     },
     methods: {
         getWeather() {
@@ -75,20 +138,42 @@ let weather = new Vue ({
                         return list.main.temp;
                     });
 
-                    this.weather = response.data.list[0].weather[0].description;
+                    this.weather = response.data.list.map(list => {
+                        return list.weather[0].description;
+                    })
                     
 
                     this.icon = response.data.list.map(list => {
                         return list.weather[0].icon;
                     })
 
-                    console.log(this.weather)
-                })   
+                    this.windSpeed = response.data.list[0].wind.speed;
 
+                    this.humidity = response.data.list[0].main.humidity;
+
+                })
+
+                .then(response => {
+
+                    for (let i = 8; i < this.dates.length; i+=8) {
+                        this.fiveDays.push(this.dates[i])}
+
+                    for (let i = 8; i < this.temps.length; i+=8) {
+                        this.fiveTemps.push(Math.round(this.temps[i] * 10) / 10)}
+
+                    for (let i = 8; i < this.dates.length; i+=8) {
+                        this.fiveIcon.push(this.icon[i])}
+                        
+
+                    createCity(this.city)
+                    HTMLdisplay()
+
+                    for (let i = 0; i < this.fiveDays.length; i++){
+                        timestamp(this.fiveDays[i], this.days, this.months)
+                    }
+                })
         },
-        getImgUrl(pic) {
-            (`/img/${pic}.png`)
-        }
+        
     }              
 });
 
